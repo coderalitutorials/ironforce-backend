@@ -857,7 +857,19 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173", // Vite local
+
+      "https://ironforce-frontend.vercel.app", // Vercel frontend
+
+      "https://pestcontrolsoho.co.uk", // Non-www domain
+      "https://www.pestcontrolsoho.co.uk", // WWW domain
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
